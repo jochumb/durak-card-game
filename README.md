@@ -1,5 +1,7 @@
 # Durak/Fool - Card Game
-Durak is a Russian/Ukrainian card game. This implementation is the 1-vs-1, with siege rules, varient.
+[![CircleCI](https://circleci.com/gh/jochumb/durak-card-game.svg?style=shield)](https://circleci.com/gh/jochumb/durak-card-game)
+
+Durak is a Russian/Ukrainian card game. This implementation is the 1-vs-1, with siege rules, variant.
 
 ## The Game
 
