@@ -54,6 +54,12 @@ Durak is a Russian/Ukrainian card game. This implementation is the 1-vs-1, with 
 | `[8♣, 8♦, 8♥]` | `true` |
 | `[8♣, 8♦, 8♥, 8♠]` | `true` |
 
+Number of cards in hand of defender: 1
+| Attack | Valid |
+| --- | --- |
+| `[8♠]` | `true` |
+| `[8♣, 8♦]` | `false` |
+
 #### Next Attack Examples
 Cards on the table are: `[8♦, J♦]`
 | Attack | Valid |
@@ -66,6 +72,26 @@ Cards on the table are: `[8♦, J♦]`
 | `[8♠]` | `true` |
 | `[8♣, 8♥]` | `true` |
 | `[8♣, J♣]` | `true` |
+
+Cards on the table are: `[8♦, J♦]`
+Number of cards in hand of defender: 0
+| --- | --- |
+| `[]` | `true` |
+| `[8♠]` | `false` |
+
+Cards on the table are: `[8♦, J♦]`
+Number of cards in hand of defender: 1
+| Attack | Valid |
+| --- | --- |
+| `[]` | `true` |
+| `[8♠]` | `true` |
+| `[8♣, J♣]` | `false` |
+
+Cards on the table are: `[8♦, J♦, 8♣, 8♥, 8♣, J♣, J♥, K♥, K♣, A♣]`
+| Attack | Valid |
+| --- | --- |
+| `[A♥]` | `true` |
+| `[A♥, A♠]` | `false` |
 
 #### Defend Examples
 The *trump suit* is: *diamonds (♦)*
