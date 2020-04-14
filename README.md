@@ -5,7 +5,7 @@ Durak is a Russian/Ukrainian card game. This implementation is the 1-vs-1, with 
 
 ## The Game
 
-### Round setup
+### Setup
 * The **deck** consists of 36 cards. **Ranks**: `6, 7, 8, 9, 10, J, Q, K, A`, **suits**: `clubs (♣), diamonds (♦), hearts (♥), spades (♠)`.
 * The deck is *shuffled*
 * Each player is dealt **6** cards
