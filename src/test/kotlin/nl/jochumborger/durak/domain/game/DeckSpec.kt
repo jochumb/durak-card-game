@@ -1,4 +1,4 @@
-package nl.jochumborger.durak.domain
+package nl.jochumborger.durak.domain.game
 
 import org.assertj.core.api.Assertions.assertThat
 import org.spekframework.spek2.Spek
@@ -9,6 +9,7 @@ private const val NUM_SUITS = 4
 private const val DECK_SIZE = NUM_RANKS * NUM_SUITS // 36
 
 object DeckSpec : Spek({
+
     describe("A Deck of cards") {
         var deck: Deck = Deck.createShuffledDeck()
 
@@ -17,7 +18,7 @@ object DeckSpec : Spek({
         }
 
         it("has 36 cards") {
-            assertThat(deck.size()).isEqualTo(DECK_SIZE)
+            assertThat(deck.size).isEqualTo(DECK_SIZE)
         }
 
         it("has 9 ranks upto Ace, and 4 suits") {
@@ -52,6 +53,12 @@ object DeckSpec : Spek({
             val deck2 = Deck.createShuffledDeck()
             val equalCards = (1..DECK_SIZE).filter { deck.pick() == deck2.pick() }.size
             assertThat(equalCards).isLessThan(DECK_SIZE)
+        }
+
+        it("can reveal the last card, without picking it") {
+            val lastCard = deck.peekLast()
+            assertThat(lastCard).isNotNull
+            assertThat(deck.size).isEqualTo(DECK_SIZE)
         }
     }
 })

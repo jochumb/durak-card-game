@@ -1,6 +1,8 @@
-package nl.jochumborger.durak.domain
+package nl.jochumborger.durak.domain.game
 
-data class Card(val rank: Rank, val suit: Suit) {
+data class Card(val suit: Suit, val rank: Rank) {
+    data class Trump(val suit: Suit, val rank: Rank? = null)
+
     enum class Rank(val value: Int) {
         SIX(6),
         SEVEN(7),
