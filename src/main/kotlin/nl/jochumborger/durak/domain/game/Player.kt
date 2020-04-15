@@ -1,3 +1,3 @@
 package nl.jochumborger.durak.domain.game
 
-data class Player(val id: Int)
+data class Player(val id: Int, val hand: Hand)

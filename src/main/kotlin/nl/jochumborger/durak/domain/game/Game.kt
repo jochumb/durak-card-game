@@ -1,20 +1,18 @@
 package nl.jochumborger.durak.domain.game
 
-class Game(val players: Set<Player>, deckProducer: () -> Deck) {
-    private val deck: Deck = deckProducer.invoke()
-    private val playerHands: Map<Player, Hand>
+class Game(deckSupplier: () -> Deck) {
+    private val deck: Deck = deckSupplier.invoke()
     private val trump: Card
+
+    val players: List<Player>
+
     private lateinit var round: Round
 
     init {
         trump = deck.peekLast()!!
-        playerHands = players.map {
-            Pair(it, Hand(dealNumberOfCardsFromDeck(HAND_SIZE, deck)))
-        }.toMap()
-    }
-
-    fun getHandForPlayer(player: Player): Hand {
-        return playerHands.getOrDefault(player, Hand(emptySet()))
+        players = (1..NUMBER_OF_PLAYERS).map {
+            Player(it, Hand(dealNumberOfCardsFromDeck(HAND_SIZE, deck)))
+        }
     }
 
     fun getDeckSize(): Int = deck.size
@@ -25,14 +23,15 @@ class Game(val players: Set<Player>, deckProducer: () -> Deck) {
     }
 
     fun isFinished(): Boolean {
-        return deck.isEmpty() && players.any { getHandForPlayer(it).size == 0 } && round.isFinished()
+        return deck.isEmpty() && players.any { it.hand.size == 0 } && round.isFinished()
     }
 
     fun winner(): Player? {
-        return if (isFinished()) round.winner else null
+        return if (isFinished()) players.firstOrNull { it.id == round.winner } else null
     }
 
     companion object {
+        const val NUMBER_OF_PLAYERS = 2
         const val HAND_SIZE = 6
 
         private fun dealNumberOfCardsFromDeck(numberOfCards: Int, deck: Deck): Set<Card> {
@@ -57,11 +56,11 @@ class Game(val players: Set<Player>, deckProducer: () -> Deck) {
 }
 
 data class Round(private var finished: Boolean) {
-    var winner: Player? = null
+    var winner: Int? = null
     fun isFinished() = finished
 
     fun finish(winner: Player) {
         finished = true
-        this.winner = winner
+        this.winner = winner.id
     }
 }

@@ -2,7 +2,7 @@ package nl.jochumborger.durak.domain.game
 
 class GameService {
 
-    fun setupGame(players: Set<Player>): Game {
-        return Game(players) { Deck.createShuffledDeck() }
+    fun setupGame(): Game {
+        return Game() { Deck.createShuffledDeck() }
     }
 }

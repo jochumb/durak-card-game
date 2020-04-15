@@ -3,9 +3,7 @@ package nl.jochumborger.durak.domain.game
 class Deck private constructor(private val cards: MutableList<Card>) {
 
     val size: Int
-    get() {
-        return cards.size
-    }
+        get() = cards.size
 
     fun isEmpty() = cards.isEmpty()
 
